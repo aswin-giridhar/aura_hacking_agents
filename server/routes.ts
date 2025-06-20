@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertConversationSchema, insertMessageSchema, insertCoachingTipSchema } from "@shared/schema";
 import { sendDailyTip, sendResponseReminder, sendEmergencyHelp } from "./services/twilio";
 import { analyzeConversation, generateConversationStarter, analyzeProfile, generateResponseSuggestion } from "./services/langflow";
+import { sendWhatsAppMessage, setupWhatsAppWebhook } from "./services/whatsapp";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Dashboard stats
@@ -338,6 +339,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ success: true, message: 'Call request submitted successfully' });
     } catch (error) {
       res.status(500).json({ error: 'Failed to request coach call' });
+    }
+  });
+
+  // Setup WhatsApp webhook
+  await setupWhatsAppWebhook(app);
+
+  // Send WhatsApp message endpoint
+  app.post('/api/whatsapp/send', async (req, res) => {
+    try {
+      const { phoneNumber, message } = req.body;
+      
+      if (!phoneNumber || !message) {
+        return res.status(400).json({ error: 'Phone number and message are required' });
+      }
+      
+      const result = await sendWhatsAppMessage(phoneNumber, message);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to send WhatsApp message' });
+    }
+  });
+
+  // Get WhatsApp status endpoint
+  app.get('/api/whatsapp/status', async (req, res) => {
+    try {
+      const isConfigured = !!(process.env.TWILIO_ACCOUNT_SID && 
+                             process.env.TWILIO_AUTH_TOKEN && 
+                             process.env.TWILIO_PHONE_NUMBER &&
+                             process.env.MISTRAL_API_KEY);
+      
+      res.json({ 
+        configured: isConfigured,
+        phoneNumber: process.env.TWILIO_PHONE_NUMBER || null
+      });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get WhatsApp status' });
     }
   });
 

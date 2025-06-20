@@ -8,6 +8,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Heart, MessageCircle, Phone, Star, Brain } from "lucide-react";
+import { WhatsAppChat } from "@/components/whatsapp-chat";
 import type { Conversation } from "@shared/schema";
 import { formatDistanceToNow } from "date-fns";
 
@@ -157,13 +158,21 @@ export function AuraInterface({ userId }: AuraInterfaceProps) {
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
-              <Heart className="text-white h-5 w-5" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
+                <Heart className="text-white h-5 w-5" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Aura</h1>
+                <p className="text-sm text-gray-600">Your AI-Powered Relationship Coach</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Aura</h1>
-              <p className="text-sm text-gray-600">Your AI-Powered Relationship Coach</p>
+            <div className="flex items-center space-x-4">
+              <WhatsAppChat />
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-sm font-medium">JD</span>
+              </div>
             </div>
           </div>
         </div>

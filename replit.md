@@ -52,10 +52,12 @@ The application uses PostgreSQL with the following core entities:
 - **Profile Analysis**: AI-powered dating profile feedback
 - **Conversation Analysis**: Engagement level assessment and topic extraction
 
-### SMS Integration
-- **Twilio Integration**: SMS sending capabilities for coaching tips and reminders
+### Communication Integration
+- **Twilio SMS Integration**: SMS sending capabilities for coaching tips and reminders
+- **WhatsApp Integration**: Direct WhatsApp messaging with Mistral AI-powered responses
 - **SMS Logging**: Complete SMS interaction tracking
 - **Preference Management**: User-controlled SMS notification settings
+- **Real-time Chat**: WhatsApp webhook for incoming message processing
 
 ## Data Flow
 
