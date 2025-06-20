@@ -86,7 +86,6 @@ export const insertUserSchema = createInsertSchema(users).omit({
 export const insertConversationSchema = createInsertSchema(conversations).omit({
   id: true,
   createdAt: true,
-  lastActive: true,
 });
 
 export const insertMessageSchema = createInsertSchema(messages).omit({
@@ -102,7 +101,6 @@ export const insertCoachingTipSchema = createInsertSchema(coachingTips).omit({
 export const insertSmsLogSchema = createInsertSchema(smsLogs).omit({
   id: true,
   createdAt: true,
-  sentAt: true,
 });
 
 export const insertWorkflowSchema = createInsertSchema(workflows).omit({

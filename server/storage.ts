@@ -251,6 +251,8 @@ export class MemStorage implements IStorage {
     const user: User = { 
       ...insertUser, 
       id,
+      phone: insertUser.phone || null,
+      smsEnabled: insertUser.smsEnabled ?? true,
       createdAt: new Date()
     };
     this.users.set(id, user);
@@ -282,6 +284,11 @@ export class MemStorage implements IStorage {
     const conversation: Conversation = {
       ...insertConversation,
       id,
+      status: insertConversation.status || 'active',
+      partnerImage: insertConversation.partnerImage || null,
+      lastMessage: insertConversation.lastMessage || null,
+      engagementLevel: insertConversation.engagementLevel || 'medium',
+      responseRate: insertConversation.responseRate ?? 0,
       lastActive: new Date(),
       createdAt: new Date(),
     };
@@ -310,6 +317,7 @@ export class MemStorage implements IStorage {
     const message: Message = {
       ...insertMessage,
       id,
+      aiSuggested: insertMessage.aiSuggested ?? false,
       timestamp: new Date(),
     };
     this.messages.set(id, message);
@@ -328,6 +336,8 @@ export class MemStorage implements IStorage {
     const tip: CoachingTip = {
       ...insertTip,
       id,
+      conversationId: insertTip.conversationId || null,
+      isRead: insertTip.isRead ?? false,
       createdAt: new Date(),
     };
     this.coachingTips.set(id, tip);
@@ -354,6 +364,9 @@ export class MemStorage implements IStorage {
     const log: SmsLog = {
       ...insertLog,
       id,
+      status: insertLog.status || 'pending',
+      twilioSid: insertLog.twilioSid || null,
+      sentAt: null,
       createdAt: new Date(),
     };
     this.smsLogs.set(id, log);
@@ -381,6 +394,8 @@ export class MemStorage implements IStorage {
     const workflow: Workflow = {
       ...insertWorkflow,
       id,
+      status: insertWorkflow.status || 'queued',
+      results: insertWorkflow.results || null,
       lastUpdated: new Date(),
     };
     this.workflows.set(id, workflow);
