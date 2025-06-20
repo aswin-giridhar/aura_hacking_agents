@@ -20,10 +20,14 @@ export const conversations = pgTable("conversations", {
   partnerImage: text("partner_image"),
   lastMessage: text("last_message"),
   lastActive: timestamp("last_active").defaultNow(),
-  status: text("status").default("active"), // active_lead, dead_lead
-  relationshipStage: text("relationship_stage").default("lust"), // lust, labor, loyal
+  status: text("status").default("lust"), // lust, labor, loyal, dead
+  relationshipStage: text("relationship_stage").default("lust"), // lust, labor, loyal, dead
   starSign: text("star_sign"),
   mbtiType: text("mbti_type"),
+  emotionalTemperature: text("emotional_temperature").default("neutral"), // cold, lukewarm, warm, hot, confused
+  redFlags: text("red_flags").array().default([]),
+  greenFlags: text("green_flags").array().default([]),
+  aiSuggestedNextStep: text("ai_suggested_next_step"),
   responseRate: integer("response_rate").default(0),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -88,6 +92,7 @@ export const insertUserSchema = createInsertSchema(users).omit({
 export const insertConversationSchema = createInsertSchema(conversations).omit({
   id: true,
   createdAt: true,
+  lastActive: true,
 });
 
 export const insertMessageSchema = createInsertSchema(messages).omit({
@@ -103,6 +108,7 @@ export const insertCoachingTipSchema = createInsertSchema(coachingTips).omit({
 export const insertSmsLogSchema = createInsertSchema(smsLogs).omit({
   id: true,
   createdAt: true,
+  sentAt: true,
 });
 
 export const insertWorkflowSchema = createInsertSchema(workflows).omit({

@@ -82,7 +82,7 @@ export class MemStorage implements IStorage {
     this.users.set(1, user);
     this.currentUserId = 2;
 
-    // Create sample conversations for Aura dating coach
+    // Create sample conversations
     const sampleConversations: Conversation[] = [
       {
         id: 1,
@@ -91,24 +91,20 @@ export class MemStorage implements IStorage {
         partnerImage: "https://images.unsplash.com/photo-1494790108755-2616b9f5c5c3?w=100&h=100&fit=crop&crop=face",
         lastMessage: "That sounds like a great restaurant! I'd love to try...",
         lastActive: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-        status: "active_lead",
-        relationshipStage: "labor",
-        starSign: "Leo",
-        mbtiType: "ENFP",
+        engagementLevel: "high",
+        status: "active",
         responseRate: 85,
         createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
       },
       {
         id: 2,
         userId: 1,
-        partnerName: "Alex R.",
+        partnerName: "Mike T.",
         partnerImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-        lastMessage: "Hey, thanks for last night. Had fun!",
+        lastMessage: "Haha, that's funny! What do you think about...",
         lastActive: new Date(Date.now() - 5 * 60 * 60 * 1000), // 5 hours ago
-        status: "active_lead",
-        relationshipStage: "lust",
-        starSign: "Scorpio",
-        mbtiType: "INTJ",
+        engagementLevel: "medium",
+        status: "active",
         responseRate: 65,
         createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), // 5 days ago
       },
@@ -119,26 +115,10 @@ export class MemStorage implements IStorage {
         partnerImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
         lastMessage: "I had such a great time yesterday! When can we...",
         lastActive: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
-        status: "active_lead",
-        relationshipStage: "loyal",
-        starSign: "Gemini",
-        mbtiType: "ESFJ",
+        engagementLevel: "high",
+        status: "active",
         responseRate: 92,
         createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7 days ago
-      },
-      {
-        id: 4,
-        userId: 1,
-        partnerName: "Jordan P.",
-        partnerImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
-        lastMessage: "Seen two weeks ago",
-        lastActive: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000), // 2 weeks ago
-        status: "dead_lead",
-        relationshipStage: "lust",
-        starSign: "Virgo",
-        mbtiType: "ISTP",
-        responseRate: 20,
-        createdAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000), // 20 days ago
       },
     ];
 
@@ -271,8 +251,6 @@ export class MemStorage implements IStorage {
     const user: User = { 
       ...insertUser, 
       id,
-      phone: insertUser.phone || null,
-      smsEnabled: insertUser.smsEnabled ?? true,
       createdAt: new Date()
     };
     this.users.set(id, user);
@@ -304,13 +282,6 @@ export class MemStorage implements IStorage {
     const conversation: Conversation = {
       ...insertConversation,
       id,
-      status: insertConversation.status || 'active_lead',
-      partnerImage: insertConversation.partnerImage || null,
-      lastMessage: insertConversation.lastMessage || null,
-      relationshipStage: insertConversation.relationshipStage || 'lust',
-      starSign: insertConversation.starSign || null,
-      mbtiType: insertConversation.mbtiType || null,
-      responseRate: insertConversation.responseRate ?? 0,
       lastActive: new Date(),
       createdAt: new Date(),
     };
@@ -339,7 +310,6 @@ export class MemStorage implements IStorage {
     const message: Message = {
       ...insertMessage,
       id,
-      aiSuggested: insertMessage.aiSuggested ?? false,
       timestamp: new Date(),
     };
     this.messages.set(id, message);
@@ -358,8 +328,6 @@ export class MemStorage implements IStorage {
     const tip: CoachingTip = {
       ...insertTip,
       id,
-      conversationId: insertTip.conversationId || null,
-      isRead: insertTip.isRead ?? false,
       createdAt: new Date(),
     };
     this.coachingTips.set(id, tip);
@@ -386,9 +354,6 @@ export class MemStorage implements IStorage {
     const log: SmsLog = {
       ...insertLog,
       id,
-      status: insertLog.status || 'pending',
-      twilioSid: insertLog.twilioSid || null,
-      sentAt: null,
       createdAt: new Date(),
     };
     this.smsLogs.set(id, log);
@@ -416,8 +381,6 @@ export class MemStorage implements IStorage {
     const workflow: Workflow = {
       ...insertWorkflow,
       id,
-      status: insertWorkflow.status || 'queued',
-      results: insertWorkflow.results || null,
       lastUpdated: new Date(),
     };
     this.workflows.set(id, workflow);

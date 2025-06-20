@@ -1,114 +1,116 @@
-# Aura - AI-Powered Relationship and Dating Coach
+# LoveCoach AI - Dating Conversation Assistant
 
 ## Overview
 
-Aura is a comprehensive AI-powered relationship and dating coach web application that provides users with an interactive interface to manage their dating leads, receive personalized advice, and engage in chat-based coaching interactions. The application displays current dating prospects with relationship stage tracking, personality insights, and tailored guidance based on individual profiles and chat history.
+LoveCoach AI is a comprehensive dating conversation assistant that helps users improve their dating app interactions through AI-powered coaching, conversation analysis, and automated SMS workflows. The application provides real-time conversation insights, coaching tips, and automated follow-up suggestions to enhance dating success rates.
 
 ## System Architecture
 
+The application follows a full-stack TypeScript architecture with clear separation between client and server layers:
+
 ### Frontend Architecture
-- **Framework**: React 18 with TypeScript
-- **Routing**: Wouter for client-side routing
+- **Framework**: React 18 with TypeScript and Vite for development/building
+- **UI Library**: shadcn/ui components built on Radix UI primitives
+- **Styling**: Tailwind CSS with custom design tokens and responsive design
 - **State Management**: TanStack Query for server state management
-- **UI Components**: Radix UI components with shadcn/ui styling system
-- **Styling**: Tailwind CSS with custom design tokens
-- **Build Tool**: Vite with custom configuration for development and production
+- **Routing**: Wouter for lightweight client-side routing
+- **Form Management**: React Hook Form with Zod validation
 
 ### Backend Architecture
-- **Runtime**: Node.js 20 with Express.js
-- **Database**: PostgreSQL with Drizzle ORM
-- **Authentication**: Session-based (infrastructure in place)
-- **API Design**: RESTful API with structured error handling
-- **Development**: Hot reload with Vite middleware integration
-
-### Database Schema
-The application uses PostgreSQL with the following core entities:
-- **Users**: Basic user information and SMS preferences
-- **Conversations**: Dating conversations with engagement tracking
-- **Messages**: Individual messages within conversations
-- **Coaching Tips**: AI-generated coaching advice
-- **SMS Logs**: SMS communication tracking
-- **Workflows**: Automated coaching workflows
-- **Stats**: User performance metrics
+- **Runtime**: Node.js with Express.js server
+- **Language**: TypeScript with ES modules
+- **Database ORM**: Drizzle ORM with PostgreSQL dialect
+- **Session Management**: Express sessions with PostgreSQL store
+- **API Design**: RESTful endpoints with typed request/response interfaces
 
 ## Key Components
 
-### Aura Interface System
-- **Dating Leads Display**: Visual cards showing current dating prospects with status (Active Lead/Dead Lead)
-- **Relationship Stage Tracking**: Progress bars indicating Lust/Labor/Loyal phases with visual progression
-- **Personality Insights**: Star sign and MBTI type display for each prospect
-- **Contextual Advice**: Personalized suggestions based on relationship stage and personality type
-- **Interactive Chat**: Real-time conversation with Aura AI for coaching guidance
-
-### Profile Analysis Features
-- **Status Classification**: Active leads vs dead leads with appropriate styling
-- **Stage-Based Guidance**: Tailored advice for each relationship phase (Lust, Labor, Loyal)
-- **Personality-Driven Insights**: Coaching based on star signs and MBTI types
-- **Situation Summaries**: Brief overviews of current status with each prospect
+### Database Schema
+The application uses a PostgreSQL database with the following core entities:
+- **Users**: User profiles with authentication and SMS preferences
+- **Conversations**: Dating app conversation tracking with engagement metrics
+- **Messages**: Individual messages within conversations with AI suggestion flags
+- **Coaching Tips**: Personalized coaching insights and recommendations
+- **SMS Logs**: Automated SMS workflow tracking and delivery status
+- **Workflows**: Automated coaching and reminder workflows
+- **Stats**: User performance metrics and success tracking
 
 ### AI Integration Layer
-- **Langflow Integration**: External AI workflow engine for conversation analysis and coaching
-- **Response Generation**: Context-aware AI response suggestions
-- **Profile Analysis**: AI-powered dating profile feedback
-- **Conversation Analysis**: Engagement level assessment and topic extraction
+- **Langflow Integration**: External AI workflow service for conversation analysis and coaching
+- **Services**: Conversation analysis, profile optimization, and response suggestions
+- **Fallback Strategy**: Mock responses when AI services are unavailable
 
-### Communication Integration
-- **Twilio SMS Integration**: SMS sending capabilities for coaching tips and reminders
-- **WhatsApp Integration**: Direct WhatsApp messaging with Mistral AI-powered responses
-- **SMS Logging**: Complete SMS interaction tracking
-- **Preference Management**: User-controlled SMS notification settings
-- **Real-time Chat**: WhatsApp webhook for incoming message processing
+### SMS Automation
+- **Twilio Integration**: SMS delivery for coaching tips and reminders
+- **Workflow Engine**: Automated daily tips, response reminders, and emergency help
+- **Fallback Strategy**: Graceful degradation when SMS services are unavailable
+
+### UI Components
+- **Dashboard**: Comprehensive overview with stats, recent conversations, and quick actions
+- **Love CRM**: Advanced conversation pipeline management with engagement tracking
+- **Coaching Insights**: AI-powered tips and workflow management
+- **Conversation Modal**: Detailed conversation view with AI response suggestions
 
 ## Data Flow
 
-1. **User Interaction**: User views dashboard with real-time stats and conversations
-2. **Conversation Selection**: User clicks on conversation to view details in modal
-3. **AI Analysis**: System analyzes conversation context and generates suggestions
-4. **Response Generation**: AI provides contextual response recommendations
-5. **Coaching Tips**: System generates and displays personalized coaching advice
-6. **SMS Notifications**: Optional SMS delivery of coaching tips and reminders
-7. **Analytics Update**: User actions update engagement metrics and success scores
+1. **User Interaction**: Users interact with the React frontend through shadcn/ui components
+2. **API Communication**: Frontend communicates with Express backend via RESTful APIs
+3. **Database Operations**: Drizzle ORM handles all database interactions with PostgreSQL
+4. **AI Processing**: Langflow workflows provide conversation analysis and coaching insights
+5. **SMS Delivery**: Twilio handles automated SMS notifications and reminders
+6. **Real-time Updates**: TanStack Query manages cache invalidation and real-time data updates
 
 ## External Dependencies
 
-### AI Services
-- **Langflow**: AI workflow engine for conversation analysis and coaching
-- **Custom AI Endpoints**: Response suggestion and profile analysis services
+### Core Dependencies
+- **@neondatabase/serverless**: PostgreSQL database connectivity
+- **drizzle-orm**: Type-safe database ORM
+- **@tanstack/react-query**: Server state management
+- **@radix-ui/***: Accessible UI component primitives
+- **tailwindcss**: Utility-first CSS framework
 
-### Communication Services
-- **Twilio**: SMS messaging platform for coaching tips and notifications
-- **Neon Database**: PostgreSQL hosting service
+### Third-party Integrations
+- **Langflow**: AI workflow engine for conversation analysis (optional)
+- **Twilio**: SMS delivery service (optional)
+- **Neon Database**: PostgreSQL hosting (configurable)
 
 ### Development Tools
-- **Replit**: Development environment with integrated PostgreSQL
-- **Drizzle Kit**: Database schema management and migrations
-- **ESBuild**: Production build optimization
+- **Vite**: Frontend build tool and development server
+- **ESBuild**: Backend bundling for production
+- **TypeScript**: Type safety across the entire stack
 
 ## Deployment Strategy
 
 ### Development Environment
-- **Platform**: Replit with integrated PostgreSQL and Node.js
-- **Hot Reload**: Vite development server with Express middleware
-- **Database**: Local PostgreSQL instance with Drizzle migrations
-- **Port Configuration**: Frontend (5000) with automatic port forwarding
+- **Replit Integration**: Configured for Replit development environment
+- **Hot Module Replacement**: Vite HMR for rapid frontend development
+- **File Watching**: tsx for backend development with auto-restart
 
 ### Production Build
-- **Frontend**: Vite build to `dist/public` directory
-- **Backend**: ESBuild bundle to `dist/index.js`
-- **Static Assets**: Served by Express in production mode
-- **Database**: Production PostgreSQL with environment-based configuration
+- **Frontend**: Vite builds optimized React bundle to `dist/public`
+- **Backend**: ESBuild bundles server code to `dist/index.js`
+- **Static Assets**: Express serves frontend assets in production mode
 
 ### Environment Configuration
 - **Database**: `DATABASE_URL` for PostgreSQL connection
 - **AI Services**: `LANGFLOW_API_URL` and `LANGFLOW_API_KEY` for AI integration
-- **SMS**: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_PHONE_NUMBER` for messaging
-- **Development**: Automatic fallback to mock services when external APIs unavailable
+- **SMS Services**: Twilio credentials for SMS functionality
+- **Development**: Auto-detection of Replit environment for development features
 
-## User Preferences
-
-Preferred communication style: Simple, everyday language.
+### Scaling Considerations
+- **Autoscale Deployment**: Configured for Replit's autoscale deployment target
+- **Session Storage**: PostgreSQL-backed sessions for horizontal scaling
+- **Stateless Design**: Server designed to be stateless for easy scaling
 
 ## Changelog
 
+```
 Changelog:
 - June 20, 2025. Initial setup
+```
+
+## User Preferences
+
+```
+Preferred communication style: Simple, everyday language.
+```
