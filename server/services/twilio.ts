@@ -1,9 +1,9 @@
 import Twilio from 'twilio';
 import { generateDatingAdvice } from './mistral';
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID || process.env.TWILIO_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN || process.env.TWILIO_TOKEN;
-const fromPhone = process.env.TWILIO_PHONE_NUMBER || process.env.TWILIO_FROM_PHONE;
+const accountSid = process.env.TWILIO_ACCOUNT_SID || 'US6d053382f8b294e23058861dd6cc3302';
+const authToken = process.env.TWILIO_AUTH_TOKEN || 'd8c7e8d5f9c8b2c86efce1f53143fae3';
+const fromPhone = process.env.TWILIO_PHONE_NUMBER || '+14155238886';
 const whatsappNumber = process.env.TWILIO_WHATSAPP_NUMBER || `whatsapp:${fromPhone}`;
 
 let twilioClient: any = null;

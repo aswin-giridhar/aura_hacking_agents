@@ -11,10 +11,17 @@ export function FloatingWhatsApp() {
 
   const sendWhatsAppMutation = useMutation({
     mutationFn: async () => {
+      // Open WhatsApp web with pre-filled message to your business number
+      const phoneNumber = "14155238886"; // Your Twilio WhatsApp Business number
+      const message = encodeURIComponent("Hi! I want to chat with LoveCoach AI for dating advice.");
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+      window.open(whatsappUrl, '_blank');
+      
+      // Also notify backend that user initiated WhatsApp conversation
       const response = await apiRequest('POST', '/api/whatsapp/send', {
-        to: '+1234567890', // Replace with your WhatsApp Business number
-        message: 'Welcome to LoveCoach AI! 🌟\n\nI\'m your personal dating assistant powered by advanced AI. I can help you with:\n\n💬 Conversation starters\n📝 Profile optimization\n💡 Dating advice\n🚀 Confidence building\n\nJust send me a message and let\'s improve your dating game together!',
-        userId: 1 // Current user ID
+        to: '+1234567890', // User's phone (placeholder - will be updated when they message)
+        message: 'WhatsApp conversation initiated from website',
+        userId: 1
       });
       return response.json();
     },

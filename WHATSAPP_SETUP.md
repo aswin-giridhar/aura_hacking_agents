@@ -3,36 +3,38 @@
 ## Overview
 Your LoveCoach AI app now includes full WhatsApp integration with Mistral AI. Users can chat directly with your AI dating coach through WhatsApp, powered by your Mistral API key.
 
-## Required Environment Variables
-
-Add these to your Replit Secrets or `.env` file:
+## Your Configuration
+Your Twilio credentials are already configured:
 
 ```bash
-# Mistral AI Configuration
+# Mistral AI Configuration (Already set)
 MISTRAL_API_KEY=B912vIZxj3H3USwTGpg1TOkfoybltQDd
 
-# Twilio Configuration for WhatsApp
-TWILIO_ACCOUNT_SID=your_twilio_account_sid
-TWILIO_AUTH_TOKEN=your_twilio_auth_token
-TWILIO_PHONE_NUMBER=your_twilio_phone_number
-TWILIO_WHATSAPP_NUMBER=whatsapp:+your_whatsapp_business_number
+# Twilio Configuration (Already configured)
+TWILIO_ACCOUNT_SID=US6d053382f8b294e23058861dd6cc3302
+TWILIO_AUTH_TOKEN=d8c7e8d5f9c8b2c86efce1f53143fae3
+TWILIO_PHONE_NUMBER=+14155238886
+TWILIO_WHATSAPP_NUMBER=whatsapp:+14155238886
 ```
 
-## Twilio WhatsApp Setup
+## Immediate Next Steps
 
-1. **Create Twilio Account**
-   - Sign up at https://www.twilio.com
-   - Get your Account SID and Auth Token from the console
-
-2. **WhatsApp Business Setup**
-   - Enable WhatsApp in your Twilio console
-   - Complete the WhatsApp Business verification process
-   - Get your WhatsApp-enabled phone number
-
-3. **Configure Webhook**
-   - In Twilio Console, go to Messaging > Settings > WhatsApp sandbox
+1. **Configure Twilio Webhook**
+   - Go to your Twilio Console: https://console.twilio.com
+   - Navigate to Messaging > Settings > WhatsApp sandbox
    - Set webhook URL to: `https://your-repl-name.replit.app/webhook/whatsapp`
    - Set HTTP method to POST
+   - Save the configuration
+
+2. **Test the Integration**
+   - Click the floating WhatsApp button on your website
+   - It will open WhatsApp Web with your business number
+   - Send a message to test the AI response
+
+3. **WhatsApp Business Account (If needed)**
+   - Your current setup uses Twilio's sandbox
+   - For production, you'll need WhatsApp Business API approval
+   - This allows custom branding and removes sandbox limitations
 
 ## How It Works
 

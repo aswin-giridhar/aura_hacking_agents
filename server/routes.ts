@@ -443,6 +443,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Test WhatsApp integration endpoint
+  app.get('/api/whatsapp/test', async (req, res) => {
+    try {
+      const testMessage = 'Hello from LoveCoach AI! Your WhatsApp integration is working correctly. 🎉';
+      const testPhone = '+14155238886'; // Your Twilio number for testing
+      
+      const result = await sendWhatsAppMessage(testPhone, testMessage);
+      
+      res.json({
+        status: 'success',
+        message: 'WhatsApp test completed',
+        twilioResult: result,
+        webhookUrl: `${req.protocol}://${req.get('host')}/webhook/whatsapp`,
+        configuration: {
+          accountSid: 'US6d053382f8b294e23058861dd6cc3302',
+          phoneNumber: '+14155238886',
+          mistralApiConfigured: true
+        }
+      });
+    } catch (error) {
+      res.status(500).json({ 
+        error: 'WhatsApp test failed', 
+        details: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
