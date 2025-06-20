@@ -5,6 +5,7 @@ import { RecentConversations } from "@/components/recent-conversations";
 import { CoachingInsights } from "@/components/coaching-insights";
 import { QuickActions } from "@/components/quick-actions";
 import { ConversationModal } from "@/components/conversation-modal";
+import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { useToast } from "@/hooks/use-toast";
 import type { Conversation } from "@shared/schema";
 
@@ -104,6 +105,9 @@ export default function Dashboard() {
         onClose={handleModalClose}
         userId={userId}
       />
+
+      {/* Floating WhatsApp Button */}
+      <FloatingWhatsApp />
     </div>
   );
 }
