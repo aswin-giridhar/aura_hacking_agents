@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(251, 91%, 70%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(327, 73%, 60%);
+  --secondary-foreground: hsl(60, 9.1%, 97.8%);
+  --accent: hsl(156, 73%, 56%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  --neutral: hsl(215, 13.8%, 34.1%);
+  --chart-1: hsl(251, 91%, 70%);
+  --chart-2: hsl(327, 73%, 60%);
+  --chart-3: hsl(156, 73%, 56%);
+  --chart-4: hsl(43, 74%, 66%);
+  --chart-5: hsl(27, 87%, 67%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(251, 91%, 70%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(327, 73%, 60%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(156, 73%, 56%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+  --neutral: hsl(215, 13.8%, 64.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom utility classes for the dating coach theme */
+.gradient-primary {
+  background: linear-gradient(135deg, hsl(251, 91%, 70%) 0%, hsl(327, 73%, 60%) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, hsl(156, 73%, 56%) 0%, hsl(43, 74%, 66%) 100%);
+}
+
+.text-neutral {
+  color: hsl(215, 13.8%, 34.1%);
+}
+
+.bg-slate-50 {
+  background-color: hsl(210, 40%, 98%);
+}
+
+.border-slate-200 {
+  border-color: hsl(214, 32%, 91%);
+}
+
+.text-slate-900 {
+  color: hsl(222, 84%, 5%);
+}
+
+.text-slate-700 {
+  color: hsl(215, 19%, 35%);
+}
+
+.bg-slate-100 {
+  background-color: hsl(210, 40%, 96%);
+}
+
+.hover\:bg-slate-50:hover {
+  background-color: hsl(210, 40%, 98%);
+}
