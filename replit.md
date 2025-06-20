@@ -70,10 +70,12 @@ The application uses PostgreSQL with the following core entities:
 
 ### AI Services
 - **Langflow**: AI workflow engine for conversation analysis and coaching
+- **Mistral AI**: Advanced language model for intelligent WhatsApp conversations
 - **Custom AI Endpoints**: Response suggestion and profile analysis services
 
 ### Communication Services
-- **Twilio**: SMS messaging platform for coaching tips and notifications
+- **Twilio**: SMS messaging platform and WhatsApp Business API integration
+- **WhatsApp Business**: Direct messaging platform for AI-powered dating coaching
 - **Neon Database**: PostgreSQL hosting service
 
 ### Development Tools
@@ -97,8 +99,9 @@ The application uses PostgreSQL with the following core entities:
 
 ### Environment Configuration
 - **Database**: `DATABASE_URL` for PostgreSQL connection
-- **AI Services**: `LANGFLOW_API_URL` and `LANGFLOW_API_KEY` for AI integration
-- **SMS**: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_PHONE_NUMBER` for messaging
+- **AI Services**: `LANGFLOW_API_URL`, `LANGFLOW_API_KEY`, and `MISTRAL_API_KEY` for AI integration
+- **SMS/WhatsApp**: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_PHONE_NUMBER`, and `TWILIO_WHATSAPP_NUMBER` for messaging
+- **WhatsApp Integration**: Webhook endpoint at `/webhook/whatsapp` for real-time message processing
 - **Development**: Automatic fallback to mock services when external APIs unavailable
 
 ## User Preferences

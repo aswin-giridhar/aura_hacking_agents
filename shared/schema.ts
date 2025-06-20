@@ -49,7 +49,7 @@ export const coachingTips = pgTable("coaching_tips", {
 export const smsLogs = pgTable("sms_logs", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id).notNull(),
-  type: text("type").notNull(), // daily_tip, reminder, emergency_help
+  type: text("type").notNull(), // daily_tip, reminder, emergency_help, whatsapp_chat, whatsapp_outgoing
   content: text("content").notNull(),
   phone: text("phone").notNull(),
   status: text("status").default("pending"), // pending, sent, failed
