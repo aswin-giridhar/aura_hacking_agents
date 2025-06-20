@@ -20,8 +20,10 @@ export const conversations = pgTable("conversations", {
   partnerImage: text("partner_image"),
   lastMessage: text("last_message"),
   lastActive: timestamp("last_active").defaultNow(),
-  engagementLevel: text("engagement_level").default("medium"), // low, medium, high
-  status: text("status").default("active"), // active, paused, completed
+  status: text("status").default("active"), // active_lead, dead_lead
+  relationshipStage: text("relationship_stage").default("lust"), // lust, labor, loyal
+  starSign: text("star_sign"),
+  mbtiType: text("mbti_type"),
   responseRate: integer("response_rate").default(0),
   createdAt: timestamp("created_at").defaultNow(),
 });

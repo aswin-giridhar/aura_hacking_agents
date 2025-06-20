@@ -82,7 +82,7 @@ export class MemStorage implements IStorage {
     this.users.set(1, user);
     this.currentUserId = 2;
 
-    // Create sample conversations
+    // Create sample conversations for Aura dating coach
     const sampleConversations: Conversation[] = [
       {
         id: 1,
@@ -91,20 +91,24 @@ export class MemStorage implements IStorage {
         partnerImage: "https://images.unsplash.com/photo-1494790108755-2616b9f5c5c3?w=100&h=100&fit=crop&crop=face",
         lastMessage: "That sounds like a great restaurant! I'd love to try...",
         lastActive: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-        engagementLevel: "high",
-        status: "active",
+        status: "active_lead",
+        relationshipStage: "labor",
+        starSign: "Leo",
+        mbtiType: "ENFP",
         responseRate: 85,
         createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
       },
       {
         id: 2,
         userId: 1,
-        partnerName: "Mike T.",
+        partnerName: "Alex R.",
         partnerImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-        lastMessage: "Haha, that's funny! What do you think about...",
+        lastMessage: "Hey, thanks for last night. Had fun!",
         lastActive: new Date(Date.now() - 5 * 60 * 60 * 1000), // 5 hours ago
-        engagementLevel: "medium",
-        status: "active",
+        status: "active_lead",
+        relationshipStage: "lust",
+        starSign: "Scorpio",
+        mbtiType: "INTJ",
         responseRate: 65,
         createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), // 5 days ago
       },
@@ -115,10 +119,26 @@ export class MemStorage implements IStorage {
         partnerImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
         lastMessage: "I had such a great time yesterday! When can we...",
         lastActive: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
-        engagementLevel: "high",
-        status: "active",
+        status: "active_lead",
+        relationshipStage: "loyal",
+        starSign: "Gemini",
+        mbtiType: "ESFJ",
         responseRate: 92,
         createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+      },
+      {
+        id: 4,
+        userId: 1,
+        partnerName: "Jordan P.",
+        partnerImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+        lastMessage: "Seen two weeks ago",
+        lastActive: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000), // 2 weeks ago
+        status: "dead_lead",
+        relationshipStage: "lust",
+        starSign: "Virgo",
+        mbtiType: "ISTP",
+        responseRate: 20,
+        createdAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000), // 20 days ago
       },
     ];
 
@@ -284,10 +304,12 @@ export class MemStorage implements IStorage {
     const conversation: Conversation = {
       ...insertConversation,
       id,
-      status: insertConversation.status || 'active',
+      status: insertConversation.status || 'active_lead',
       partnerImage: insertConversation.partnerImage || null,
       lastMessage: insertConversation.lastMessage || null,
-      engagementLevel: insertConversation.engagementLevel || 'medium',
+      relationshipStage: insertConversation.relationshipStage || 'lust',
+      starSign: insertConversation.starSign || null,
+      mbtiType: insertConversation.mbtiType || null,
       responseRate: insertConversation.responseRate ?? 0,
       lastActive: new Date(),
       createdAt: new Date(),

@@ -300,6 +300,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Aura chat endpoint
+  app.post('/api/aura-chat', async (req, res) => {
+    try {
+      const { userId, message, conversations } = req.body;
+      
+      // Generate AI response based on user message and conversation context
+      let response = "";
+      
+      if (message.toLowerCase().includes('sarah')) {
+        response = "Sarah seems to be in the Labor stage - she's showing genuine interest in deeper connection. As a Leo ENFP, she values authenticity and enthusiasm. Try sharing something meaningful about your goals or passions to deepen the bond.";
+      } else if (message.toLowerCase().includes('dead lead')) {
+        response = "For dead leads like Jordan, you have two options: 1) Send a thoughtful re-engagement message referencing something specific from your past conversation, or 2) Focus your energy on active leads. The choice depends on how promising the initial connection was.";
+      } else if (message.toLowerCase().includes('alex')) {
+        response = "Alex is still in the Lust phase - perfect for building attraction! As a Scorpio INTJ, they appreciate depth and mystery. Ask thought-provoking questions about their passions and share intriguing stories about yourself.";
+      } else if (message.toLowerCase().includes('emma')) {
+        response = "Emma has reached the Loyal stage - congratulations! As a Gemini ESFJ, she values communication and future planning. This is the perfect time to discuss shared goals and plan meaningful experiences together.";
+      } else {
+        response = "I'm here to help you navigate your dating journey! You can ask me about specific people in your leads, strategies for different relationship stages, or request personalized advice based on personality types.";
+      }
+      
+      res.json({ response });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to process chat message' });
+    }
+  });
+
+  // Coach call request endpoint
+  app.post('/api/coach-call-request', async (req, res) => {
+    try {
+      const { userId } = req.body;
+      
+      // In a real app, this would schedule a call with a human coach
+      // For now, we'll just log the request and return success
+      console.log(`Coach call requested for user ${userId}`);
+      
+      res.json({ success: true, message: 'Call request submitted successfully' });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to request coach call' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

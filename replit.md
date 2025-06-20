@@ -1,8 +1,8 @@
-# LoveCoach AI Dating Assistant
+# Aura - AI-Powered Relationship and Dating Coach
 
 ## Overview
 
-LoveCoach AI is a full-stack dating assistant application that helps users improve their dating conversations through AI-powered coaching, conversation analysis, and personalized tips. The application provides real-time feedback on dating conversations, suggests responses, and offers actionable insights to help users build better connections.
+Aura is a comprehensive AI-powered relationship and dating coach web application that provides users with an interactive interface to manage their dating leads, receive personalized advice, and engage in chat-based coaching interactions. The application displays current dating prospects with relationship stage tracking, personality insights, and tailored guidance based on individual profiles and chat history.
 
 ## System Architecture
 
@@ -33,17 +33,18 @@ The application uses PostgreSQL with the following core entities:
 
 ## Key Components
 
-### Dashboard System
-- **Stats Overview**: Real-time metrics display (active conversations, response rates, coaching tips, success scores)
-- **Recent Conversations**: List view with engagement levels and quick actions
-- **Coaching Insights**: AI-generated tips categorized by type (conversation starters, response patterns, date suggestions)
-- **Quick Actions**: One-click access to common features (new chat, analyze conversations, plan dates, emergency help)
+### Aura Interface System
+- **Dating Leads Display**: Visual cards showing current dating prospects with status (Active Lead/Dead Lead)
+- **Relationship Stage Tracking**: Progress bars indicating Lust/Labor/Loyal phases with visual progression
+- **Personality Insights**: Star sign and MBTI type display for each prospect
+- **Contextual Advice**: Personalized suggestions based on relationship stage and personality type
+- **Interactive Chat**: Real-time conversation with Aura AI for coaching guidance
 
-### Conversation Management
-- **Conversation Modal**: Full conversation view with message history
-- **AI Response Suggestions**: Context-aware response recommendations
-- **Engagement Tracking**: Automatic conversation health monitoring
-- **Message Threading**: Chronological message display with sender identification
+### Profile Analysis Features
+- **Status Classification**: Active leads vs dead leads with appropriate styling
+- **Stage-Based Guidance**: Tailored advice for each relationship phase (Lust, Labor, Loyal)
+- **Personality-Driven Insights**: Coaching based on star signs and MBTI types
+- **Situation Summaries**: Brief overviews of current status with each prospect
 
 ### AI Integration Layer
 - **Langflow Integration**: External AI workflow engine for conversation analysis and coaching
