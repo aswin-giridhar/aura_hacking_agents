@@ -1,13 +1,13 @@
-import { Twilio } from 'twilio';
+import Twilio from 'twilio';
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID || process.env.TWILIO_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN || process.env.TWILIO_TOKEN;
 const fromPhone = process.env.TWILIO_PHONE_NUMBER || process.env.TWILIO_FROM_PHONE;
 
-let twilioClient: Twilio | null = null;
+let twilioClient: any = null;
 
 if (accountSid && authToken) {
-  twilioClient = new Twilio(accountSid, authToken);
+  twilioClient = Twilio(accountSid, authToken);
 }
 
 export interface SendSmsParams {
